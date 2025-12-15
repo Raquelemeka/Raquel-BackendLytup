@@ -1,0 +1,16 @@
+# Build the project
+go build -o sr05-service
+
+
+# Run it
+./sr05-service
+
+# In another terminal, test it
+curl -X POST http://localhost:8080/service \
+  -H "Content-Type: application/json" \
+  -d '{"Srvc":"sr05"}'
+
+# Eg missing closing braces
+curl -X POST http://localhost:8080/service \
+  -H "Content-Type: application/json" \
+  -d '{"Srvc":"sr05"'
