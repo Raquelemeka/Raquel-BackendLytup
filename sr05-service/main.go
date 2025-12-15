@@ -23,12 +23,11 @@ type Daemon struct {
 	mu              sync.Mutex
 }
 
-//all workers
+
 var DaemonRegister []*Daemon
 
 
 //prints messages with timestamps.
-// Type (OUT or ERR), Source (who's logging), Message
 func Output_Logg(Type, Source, Output string) {
 	Type = strings.ToLower(Type)
 	timestamp := time.Now().Format("2006-01-02 15:04:05.000")
@@ -41,8 +40,7 @@ func Output_Logg(Type, Source, Output string) {
 	}
 }
 
-
-//First log message 
+// First log message 
 func RunDaemonCore() {
 	Output_Logg("OUT", "Main", "PROJECT: Starting up")
 	
@@ -69,7 +67,7 @@ func RunDaemonCore() {
 				d.State = 2
 				d.mu.Unlock()
 			}
-		}(daemon)
+		}(daemon) //immediately calls again
 		
 		Output_Logg("OUT", "Main", fmt.Sprintf("PROJECT: Daemon %s: Up and running", daemon.Name))
 	}
@@ -83,13 +81,12 @@ func RunDaemonCore() {
 	
 	Output_Logg("OUT", "Main", "PROJECT: Shutdown signal received")
 	
-	//time for graceful shutdown
+	//Time for graceful shutdown
 	time.Sleep(2 * time.Second)
 	Output_Logg("OUT", "Main", "PROJECT: Shutdown complete")
 }
 
 //  HTTP SERVICE 
-
 // Request payload structure
 type RequestPayload struct {
 	Srvc string `json:"Srvc"`
@@ -171,6 +168,5 @@ func main() {
 		},
 	}
 	
-	// Run the daemon core
 	RunDaemonCore()
 }
