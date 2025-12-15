@@ -10,6 +10,8 @@ This is my backend assignment solution for a server system.
    - Signal Handler - Graceful shutdown on Ctrl+C
 
 ## Program Structure
+
+```text
 main.go
 ├── Daemon Core
 │   ├── Daemon struct definition
@@ -21,6 +23,7 @@ main.go
 │   └── Request/Response structs
 └── Main Function
     └── Service registration and startup
+```
  
 ## To test,
 ### 1. Build the project
@@ -31,32 +34,37 @@ go build -o sr05-service
 
 ### 3. In another terminal, test it
 Correct Input (Success Case)
+```
 curl -X POST http://localhost:8080/service \
   -H "Content-Type: application/json" \
   -d '{"Srvc":"sr05"}'
+```
 
 The correct output should be:
+```
 {
     "ExctnOutcomeCode": 200,
     "ExctnOutcomeNote": "",
     "Yield": "Hello world"
 }
+```
 
 ### 4. (Optional) Example wrong input
+```
 curl -X POST http://localhost:8080/service \
   -H "Content-Type: application/json" \
   -d '{"Srvc":"sr05"'
+```
 
   The correct output should be:
   invalid json
 
   Other error messages you could encouter would be the Wrong Service Code Error:
-  
+  ```
   {
     "ExctnOutcomeCode": 400,
     "ExctnOutcomeNote": "unknown service code",
     "Yield": ""
 }
-
-
+```
 
