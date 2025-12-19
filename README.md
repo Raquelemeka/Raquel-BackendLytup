@@ -1,7 +1,7 @@
 # Raquel-BackendLytup
 
 ## Overview
-This is my backend assignment solution for a server system that supports both a basic service response and a weather service.
+This is my backend solution for a server system that supports both a basic service response and a weather service.
 
 The main components are:
 - **Daemon Core** – Process manager that starts and stops services
@@ -31,7 +31,7 @@ main.go
 
 ## Supported Services
 
-- **sr05** – Base service used to verify server functionality
+- **sr05**
 - **weather** – Accepts location and date seed data and returns a weather-related response
 
 ## To Test
